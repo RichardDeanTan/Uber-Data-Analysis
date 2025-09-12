@@ -1,0 +1,2 @@
+COPY locations FROM 'D:\PROJECT\0_Personal Project\Data Science Project\Personal Project\Data Analysis\Uber Data - Power BI\Data\Location Table.csv' WITH (FORMAT csv, HEADER true);
+COPY trips FROM 'D:\PROJECT\0_Personal Project\Data Science Project\Personal Project\Data Analysis\Uber Data - Power BI\Data\Uber Trip Details.csv' WITH (FORMAT csv, HEADER true);
