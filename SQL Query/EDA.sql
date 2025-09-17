@@ -68,3 +68,18 @@ FROM trips
 WHERE pickup_time IS NOT NULL
 GROUP BY EXTRACT(HOUR FROM pickup_time)
 ORDER BY hour_of_day;
+
+--5) Passenger Count Analysis
+SELECT 
+	passenger_count,
+	COUNT(*) as trip_count,
+	ROUND(AVG(fare_amount), 2) as avg_fare,
+	ROUND(SUM(fare_amount), 2) as total_revenue,
+	ROUND(AVG(trip_distance), 2) as avg_distance,
+	ROUND(AVG(fare_amount/NULLIF(trip_distance, 0)), 2) as avg_fare_per_mile,
+	COUNT(CASE WHEN surge_fee > 0 THEN 1 END) as surge_trips,
+	ROUND(AVG(surge_fee), 2) as avg_surge
+FROM trips
+WHERE passenger_count IS NOT NULL AND passenger_count > 0
+GROUP BY passenger_count
+ORDER BY passenger_count;
